@@ -1,0 +1,20 @@
+version: 3
+projects:
+- dir: project1
+  workspace: stagу
+- dir: project1
+  workspace: prod
+
+autoplan:
+    when_modified: ["*.tf"]
+
+workflows:
+  myworkflow:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-lock", "false"]
+    apply:
+      steps:
+      - apply
